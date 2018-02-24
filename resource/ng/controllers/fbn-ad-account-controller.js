@@ -11,8 +11,7 @@ angular.module('fbn')
 						 $log,
 						 FbnContextService,
 						 FbnSessionService,
-						 FbnServerCallService,
-						 FbnPopup) {
+						 FbnServerCallService) {
 
     $scope.hasAdminUserToken = null;
     FbnServerCallService.exec('/businessManager/api/getHasAdminUserToken').then(function(b) { $scope.hasAdminUserToken = b; });
