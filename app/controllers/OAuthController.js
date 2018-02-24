@@ -50,7 +50,7 @@ module.exports = function(app) {
 	      });
           })
 	  .then(function(doc) {
-	    res.json({ status: 200, result: 0 });
+	    res.redirect('/');
 	  });
       }
     });

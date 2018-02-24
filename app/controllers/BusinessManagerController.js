@@ -5,10 +5,11 @@ module.exports = function(app) {
     .route('/businessManager/api/getHasAdminUserToken')
     .post(app.apiRequiredLogin,
 	  function(req, res) {
-	    Domain.UserCredential.forUser(req.user, function(err, user) {
-	      res.json({ status: 200,
-			 result: (null !== user.getAdminUserToken()) });
-	    });
+	    Domain.UserCredential
+	      .forUser(req.user)
+	      .then(function(doc) {
+		res.json({ status: 200, result: (null !== doc.getAdminUserToken()) });
+	      });
 	  });
   
   app // testing only should be removed
@@ -49,7 +50,8 @@ module.exports = function(app) {
     .post(app.apiRequiredLogin,
 	  function(req, res) {
 	    FB
-	      .getBusinessManagerList(req.user)
+	      .withUser(req.user)
+	      .getBusinessManagerList()
 	      .then(function(data) {
 		res.json({ status: 200, result: data });
 	      });
@@ -66,6 +68,9 @@ module.exports = function(app) {
 	      .getOrCreate(req.user, bm)
 	      .then(function(bm) {
 		res.json({ status: 200, result: bm });
+	      })
+	      .catch(function(e){
+		res.json({ status: 100, result: e });
 	      });
 	  });
   

@@ -27,8 +27,8 @@ var schema = mongoose.Schema({
  */
 
 
-schema.statics.forUser = function(user, callback) {
-  Domain.UserCredential.findOne({ 'user_id': (user || { _id: null })._id }, callback);
+schema.statics.forUser = function(user) {
+  return Domain.UserCredential.findOne({ 'user_id': (user || { _id: null })._id });
 }
 
 schema.statics.verifyToken = function(jwtToken, callback) {

@@ -1,5 +1,26 @@
 var request = require('request-promise');
+
+/* Example:
+ * request({ method: 'get',
+ *           json: true,
+ * 	     uri: 'https://graph.facebook.com/' + ver + '/me/businesses',
+ * 	     qs: (new ApiParam()
+ * 		 .addParam('access_token', token)
+ * 		 .getMap()),
+ * 	     body: { access_token: token },
+ * 	     headers: {
+ * 	       'User-Agent': 'Request-Promise'
+ * 	     },
+ *        })
+*/
+
 var ver = 'v2.10';
+var graph_api_url = 'https://graph.facebook.com/' + ver;
+
+
+var TokenMap = {};
+
+// ================================================================
 
 var ApiParam = function() {
   var map = {};
@@ -16,34 +37,79 @@ var ApiParam = function() {
   }
 };
 
-var tokenMap = {};
+// ================================================================
+
+function get_call(user, path, param) {
+  try {
+    return (getToken(user)
+	    .then(function(token) {
+	      return request({ method: 'get',
+			       json: true,
+			       uri: graph_api_url + path,
+			       qs: param.addParam('access_token', token).getMap()
+			     });
+	    })
+	    .catch(function(e) {
+	      return e;
+	    }));
+    
+  } catch (err) {
+    return err;
+  }
+}
+
+function post_call(path, param) {
+  try {
+    
+  } catch (err) {
+  }
+}
+
+function getToken(user) {
+  var id = user._id.toString();
+  
+  return new Promise(function(resolve) {
+    if (TokenMap[id]) {
+      resolve(TokenMap[id]);
+      
+    } else {
+      Domain.UserCredential
+	.forUser(user)
+	.then(function(doc) {
+	  TokenMap[id] = doc.getAdminUserToken();
+	  
+	  resolve(doc.getAdminUserToken());
+	});
+    }
+  });
+}
 
 // ================================================================
 
-module.exports = {
-  getBusinessManagerList: function(user) {
-    return new Promise(function(resolve) {
-      Domain.UserCredential.forUser(user, function(error, doc) {
-	token = doc.getAdminUserToken();
+// define a function type class
+function FacebookServiceManager(user) {
+  this.user = user;
+}
 
-	request({ method: 'get',
-                  json: true,
-		  uri: 'https://graph.facebook.com/' + ver + '/me/businesses',
-		  qs: (new ApiParam()
-		       .addParam('access_token', token)
-		       .getMap()),
-		  //body: { access_token: token },
-		  //headers: {
-		  //  'User-Agent': 'Request-Promise'
-		  //},
-		})
-          .then(function(result) {
-            resolve(result && result.data
-		    ? result.data :
-		    []);
-          });
-      });
+FacebookServiceManager.prototype = {
+  constructor: FacebookServiceManager, 
+  
+  getBusinessManagerList: function() {
+    var param = new ApiParam();
+    
+    return get_call(this.user, '/me/businesses', param).then(function(result) {
+      return (result && result.data
+	      ? result.data :
+	      []);
     });
   },
+  
+};
+  
+// ================================================================
 
+module.exports = {
+  withUser: function(user) {
+    return new FacebookServiceManager(user);
+  },
 };

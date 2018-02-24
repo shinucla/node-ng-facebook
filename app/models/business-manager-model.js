@@ -52,6 +52,9 @@ schema.statics.getOrCreate = function(user, bm) {
 	      resolve(doc);
 	    });
 	  
+	} else if (!bm.id) {
+	  reject({});
+	  
 	} else {
 	  newBm.save().then(function(doc) { resolve(doc); });
 	}
