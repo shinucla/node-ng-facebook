@@ -1,0 +1,28 @@
+[*] priority
+  -) setup git for emacs, and for all live projects on /mnt/nas_usb64
+  -) adding user authentication system
+  -) extend to oauth 2.0
+  -) adding shopping cart system
+  -) adding task scheduler system: node-schedule, agenda, or node-cron
+  -) standardize ui to backend req
+  
+
+[*] features
+  1) user extension avatar should be 32x32 (avatar_small) 96x96 (avatar_medium)
+
+
+[*] ideas
+  1) Dating App
+
+
+[*] designs
+  domain models:
+    user
+    user_auth
+    user_profile
+
+    connection
+
+  
+[*] challenges
+  1) access res.locals.session = req.session; from angular

@@ -1,0 +1,116 @@
+
+// ================================================================
+ api json response format:
+
+   { status: xx, result: xxx }
+ or
+   { status: xx, error: { code: xxx, text: xxx } }
+
+// ================================================================
+
+async you nested functions:
+
+async.waterfall([
+    function readFile(readFileCallback) {
+        fs.readFile('stocktest.json', readFileCallback);
+    },
+    function processFile(file, processFileCallback) {
+        var stocksJson = JSON.parse(file);
+        if (stocksJson[ticker] != null) {
+            stocksJson[ticker].price = value;
+            fs.writeFile('stocktest.json', JSON.stringify(stocksJson, null, 4), function (error) {
+                if (!err) {
+                    console.log("File successfully written");
+                }
+                processFileCallback(err);
+            });
+        }
+        else {
+            console.log(ticker + " doesn't exist on the json");
+            processFileCallback(null);
+        }
+    }
+], function (error) {
+    if (error) {
+        //handle readFile error or processFile error here
+    }
+});
+
+
+//  ================================================================
+
+Operational errors vs. programmer errors
+It's helpful to divide all errors into two broad categories:
+
+Operational errors represent run-time problems experienced by correctly-written programs. 
+  These are not bugs in the program. In fact, these are usually problems with something else: 
+  the system itself (e.g., out of memory or too many open files), 
+  the system's configuration (e.g., no route to a remote host), 
+  the network (e.g., socket hang-up), or a remote service (e.g., a 500 error, failure to connect, or the like). 
+  Examples include:
+    failed to connect to server
+    failed to resolve hostname
+    invalid user input
+    request timeout
+    server returned a 500 response
+    socket hang-up
+    system is out of memory
+
+Programmer errors are bugs in the program. 
+  These are things that can always be avoided by changing the code. 
+  They can never be handled properly (since by definition the code in question is broken).
+    tried to read property of "undefined"
+    called an asynchronous function without a callback
+    passed a "string" where an object was expected
+    passed an object where an IP address string was expected
+    failure to handle an operational error is itself a programmer error.
+
+Let's make this concrete. For any given error, there are a few things you might do:
+Deal with the failure directly
+Propagate the failure to your client.
+Retry the operation
+Blow up. 
+Log the error — and do nothing else
+
+// ================================================================
+
+Planets["Earth"].Inhabitants.OfType<Human>().....
+
+[Naming] : http://source-code-wordle.de/NounsVariables.html
+
+attribute
+type
+helper
+collection
+converter
+handler
+info
+provider
+exception
+service
+element
+manager
+node
+option
+factory
+context
+item
+designer
+base
+editor
+
+Coordinator
+Builder
+Writer
+Reader
+Handler
+Container
+Protocol
+Target
+Converter
+Controller
+View
+Factory
+Entity
+Bucket
+
