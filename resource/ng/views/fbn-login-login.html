@@ -1,0 +1,56 @@
+<div class="container" style="width: 400px; margin: 160px auto;">
+  <form class="well"
+        method="post"
+        name="loginForm"
+        ng-submit="login(loginUser)"
+	novalidate>
+
+    <h2>Sign in</h2>
+    <div class="input-group" style="width: 100%;">
+      <input class="form-control"
+             type="email"
+             placeholder="Email"
+             name="email"
+             ng-model="loginUser.email"
+             ng-minlength="1"
+             ng-maxlength="100"
+             required>
+      <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine"
+         class="help-block">Please enter a valid email</P>
+    </div>
+
+    <div class="input-group" style="width: 100%;">
+      <input class="form-control"
+             type="password"
+             placeholder="Password"
+             name="password"
+             ng-model="loginUser.password"
+             ng-minlength="4"
+             ng-maxlength="20"
+             required>
+      <p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine"
+         class="help-block">Please enter a valid password</P>
+    </div>
+
+    <div style="color: red;">{{loginUser.errMessage}}</div>
+
+    <div class="input-group" style="width: 100%;">
+      <button class="btn btn-primary form-control" 
+	      type="submit"
+	      ng-disabled="loginForm.$invalid">
+        <i class="icon-lock icon-white">Sign in</i>
+      </button>
+    </div>
+
+    <div class="input-group" style="width: 100%;">
+      <input type="checkbox" name="rememberme"></input>
+      <label>Remember Me</label>
+    </div>
+
+    <hr/>
+    <ol class="breadcrumb">
+      <li><a href="javascript:void(0)">Forgot Your Password?</a></li>
+      <li><a href="#/login/signup">Create An Account</a></li>
+    </ol>
+  </form>
+</div>

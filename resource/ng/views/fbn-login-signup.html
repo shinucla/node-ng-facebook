@@ -1,0 +1,65 @@
+<div style="width: 400px; margin: 160px auto;" class="container">
+  <form method="post" name="signupForm" class="well" ng-submit="signup(signupUser)" novalidate>
+    <p>Create your account</p>
+    <div style="width: 100%;" class="input-group">
+      <input type="text"
+             placeholder="FirstName"
+             name="firstname"
+             class="form-control"
+             ng-model="signupUser.firstname"
+             ng-minlength="1"
+             ng-maxlength="20"
+             required>
+      <p ng-show="signupForm.firstname.$invalid && !signupForm.firstname.$pristine"
+         class="help-block">Enter a valid Firstname</p>
+    </div>
+    <div style="width: 100%;" class="input-group">
+      <input type="text"
+             placeholder="LastName"
+             name="lastname"
+             class="form-control"
+             ng-model="signupUser.lastname"
+             ng-minlength="1"
+             ng-maxlength="20"
+             required>
+      <p ng-show="signupForm.lastname.$invalid && !signupForm.lastname.$pristine"
+         class="help-block">Enter a valid Lastname</p>
+    </div>
+    <div style="width: 100%;" class="input-group">
+      <input type="email"
+             placeholder="Email"
+             name="email"
+             class="form-control"
+             ng-model="signupUser.email"
+             ng-minlength="1"
+             ng-maxlength="100"
+             required>
+      <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine"
+         class="help-block">Enter a valid Email</p>
+    </div>
+    <div style="width: 100%;" class="input-group">
+      <input type="password"
+             placeholder="Password"
+             name="password"
+             class="form-control"
+             ng-model="signupUser.password"
+             ng-minlength="4"
+             ng-maxlength="20"
+             required>
+      <p ng-show="signupForm.password.$invalid && !signupForm.password.$pristine"
+         class="help-block">Enter a valid Password</p>
+    </div>
+    <div style="width: 100%;" class="input-group">
+      <button type="submit"
+              class="btn btn-primary form-control"
+              ng-disabled="signupForm.$invalid">
+        <i class="icon-lock icon-white">Register</i>
+      </button>
+    </div>
+    <hr>
+    <ol class="breadcrumb">
+      <li><a href="#/">Back</a></li>
+      <li><a href="#/login/login">Login</a></li>
+    </ol>
+  </form>
+</div>

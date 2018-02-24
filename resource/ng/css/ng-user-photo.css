@@ -1,0 +1,82 @@
+
+.photo-holder {
+    display: inline-block;
+    border: 4px solid #fff;
+    text-align: center;
+    box-sizing: border-box;
+    width: 150px;
+    height: 150px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.photo {
+    display: inline-block;
+    background: #eee;
+    box-sizing: border-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #dfe2e2;
+}
+
+.photo-description {
+    position: absolute;
+    height: 100px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background: #090909;
+    color: white;
+    opacity: 0.6;
+}
+
+.caption {
+    overflow: hidden;
+    font-size: 9px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.arrow-left {
+    position: absolute;
+    top: 40%;
+    left: 15px;
+    width: 0px;
+    height: 0px;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-right: 30px solid rgba(170,170,170,.5);
+}
+
+.arrow-right {
+    position: absolute;
+    top: 40%;
+    right: 15px;
+    width: 0px;
+    height: 0px;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid rgba(170,170,170,.5);
+}
+
+.upload {
+    width: 50px;
+    height: 38px;
+    overflow: hidden;
+}
+
+.upload input {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+

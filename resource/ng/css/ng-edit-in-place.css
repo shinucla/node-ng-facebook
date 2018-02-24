@@ -1,0 +1,39 @@
+.edit-in-place span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.edit-in-place input {
+    position: absolute;
+    display: none;
+    color: black;
+}
+.edit-in-place.active span {
+    display: none;
+}
+.edit-in-place.active input {
+    display: inline-block;
+}
+
+
+
+.edit-in-place-area span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.edit-in-place-area textarea {
+    position: absolute;
+    display: none;
+    color: black;
+    width: 99%;
+    height: 100%;
+}
+.edit-in-place-area.active span {
+    display: none;
+}
+.edit-in-place-area.active textarea {
+    display: inline-block;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Angular Node.js Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/ng//css/fbn-business-manager.css" rel="stylesheet">
+    
+
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <!--script src="/js/jquery.validate.min.js"></script-->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="/public/js/jqlite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script-->
+    <!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script-->
+    <!--script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script-->
+
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+        
+    
+    <script src="/ng//fbn-app.js"></script>
+    <script src="/ng//constants/test-consts.js"></script>
+    
+    <script src="/ng//providers/fbn-demo-provider.js"></script>
+
+    <script src="/ng/services/fbn-context-service.js"></script>
+    <script src="/ng/services/fbn-api-service.js"></script>
+    <script src="/ng/services/fbn-error-handle-service.js"></script>
+    <script src="/ng/services/fbn-auth-service.js"></script>
+    <script src="/ng/services/fbn-session-service.js"></script>
+    <script src="/ng/services/fbn-server-call-service.js"></script>
+    
+    <script src="/ng/controllers/fbn-business-manager-controller.js"></script>
+    <script src="/ng/controllers/fbn-home-controller.js"></script>
+    <script src="/ng/controllers/fbn-auth-controller.js"></script>
+    
+    <script src="/ng/directives/fbn-header-navbar.js"></script>
+    <script src="/ng/directives/fbn-popup.js"></script>
+  </head>
+
+  <body ng-app = "fbn" style="padding-top: 60px;">
+    <fbn-header-navbar></fbn-header-navbar>
+
+    <div class="container">
+      <div ng-view></div>
+    </div>
+  </body>
+</html>
