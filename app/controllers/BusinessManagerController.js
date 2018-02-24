@@ -25,15 +25,16 @@ module.exports = function(app) {
     .route('/businessManager/api/revokeAdminUserToken')
     .post(app.apiRequiredLogin,
 	  function(req, res) {
-	    Domain.UserCredential.forUser(req.user, function(err, user) {
-	      user
-		.setAdminUserToken(null)
-		.save(function() {
-		  res.json({ status: 200, result: {}});
-		});
-	    });
+	    Domain.UserCredential
+	      .forUser(req.user)
+	      .then(function(user) {
+		return user.setAdminUserToken(null).save();
+	      })
+	      .then(function() {
+		res.json({ status: 200, result: 0 });
+	      });
 	  });
-
+  
   app
     .route('/businessManager/api/getLinkedBusinessManagers')
     .post(app.apiRequiredLogin,
