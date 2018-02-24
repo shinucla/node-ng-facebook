@@ -9,10 +9,7 @@ angular.module('fbn')
 					    $uibModal,
 					    $document,
 					    $log,
-					    FbnContextService,
-					    FbnSessionService,
-					    FbnServerCallService,
-					    FbnPopup) {
+					    FbnServerCallService) {
 
     $scope.hasAdminUserToken = null;
     FbnServerCallService.exec('/businessManager/api/getHasAdminUserToken').then(function(b) { $scope.hasAdminUserToken = b; });
@@ -35,6 +32,5 @@ angular.module('fbn')
      *      })  
      */
   })
-
 
 ;
