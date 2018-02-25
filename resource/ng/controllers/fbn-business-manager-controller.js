@@ -41,15 +41,21 @@ angular.module('fbn')
 
 
     /* The whole thing can be encapsulated into a service
-     *    FbnDialog
-     *      .editor({ templateUrl: '',
-     *                bindings: { }
-     *  
      *
+     *    FbnDialog
+     *      .editor({ title: '',
+     *                directive: '',
+     *                bindings: { },
+     *             })
+     *      .result(function(data) {
+     *        // TODO
+     *      }) 
      */
     $scope.linkBusinessManager = function() {
       $uibModal
 	.open({ component: 'linkBusinessManagerEditor',
+		backdrop:  'static',
+		keyboard  : false,
 		resolve: { // will be resolved before passing to editor
 		  clientBms: FbnServerCallService.exec('/businessManager/api/getClientBusinessManagers'),
 		  linkedBms: FbnServerCallService.exec('/businessManager/api/getLinkedBusinessManagers'),
