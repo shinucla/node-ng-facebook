@@ -40,11 +40,8 @@ schema.statics.getOrCreate = function(user, bm) {
   return new Promise(function(resolve, reject) {
     Domain.BusinessManager
       .findOne({ user_id: user._id, id: bm.id })
-      .then(function(err, doc) {
-	if (err) {
-	  reject(err);
-	  
-	} else if (doc) {
+      .then(function(doc) {
+	if (doc) {
 	  doc
 	    .setStatus(Domain.BusinessManager.StatusEnum.LINKED)
 	    .save()
