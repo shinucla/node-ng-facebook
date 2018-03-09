@@ -10,6 +10,7 @@
 
 var express           = require('express');
 var http              = require('http');
+var https             = require('https');
 var mongoose          = require('mongoose');
 var flash             = require('connect-flash');
 
@@ -18,6 +19,7 @@ var bodyParser        = require('body-parser');
 var cookieParser      = require('cookie-parser');
 var session           = require('express-session');
 var MongoSessionStore = require('connect-mongo')(session);
+var fs                = require('fs');
 
 // ================================================================
 // Global Variables
@@ -52,8 +54,11 @@ app.use(function(req, res, next) {
 });
 
 
+//var https_op = { key: fs.readFileSync('sslcert/server.key', 'utf8'),
+//		 cert: fs.readFileSync('sslcert/server.crt', 'utf8') };
+
 http.createServer(app).listen(Config.web.port);  // $sudo PORT=8080 node app.js
-//https.createServer(options, app).listen(443);  // starts https server
+//https.createServer(https_op, app).listen(443);  // starts https server
 
 
 // If the Node process ends, close the Mongoose connection
