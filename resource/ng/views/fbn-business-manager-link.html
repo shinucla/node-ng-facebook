@@ -1,7 +1,16 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Link A Business Manager</h3>
+</div>
+
 <div class="container" style="width: 800px; margin: 10px auto;">
   <div>
+    <h4>Business Manager:</h4>
     <select ng:model="bm" ng:options="m as m.name for m in availableBms"/>
   </div>
-  </br><button class="btn btn-primary" type="button" ng-click="linkBusinessManager()">Link</button>
+  </br>
 </div>
-  
+
+<div class="modal-footer">
+  <button ng-disabled="!bm" class="btn btn-primary" type="button" ng-click="linkBusinessManager()">Link</button>
+  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
