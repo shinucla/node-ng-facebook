@@ -55,6 +55,7 @@ app.use(function(req, res, next) {
 
 
 var https_op = { key: fs.readFileSync(Config.root + '/certs/ssl/private.key', 'utf8'),
+		 ca: fs.readFileSync(Config.root + '/certs/ssl/ca_bundle.crt', 'utf8'),
 		 cert: fs.readFileSync(Config.root + '/certs/ssl/certificate.crt', 'utf8') };
 
 http.createServer(app).listen(Config.web.port);  // $sudo PORT=8080 node app.js
