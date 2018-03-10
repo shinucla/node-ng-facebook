@@ -54,11 +54,11 @@ app.use(function(req, res, next) {
 });
 
 
-//var https_op = { key: fs.readFileSync('sslcert/server.key', 'utf8'),
-//		 cert: fs.readFileSync('sslcert/server.crt', 'utf8') };
+var https_op = { key: fs.readFileSync(Config.root + '/certs/ssl/private.key', 'utf8'),
+		 cert: fs.readFileSync(Config.root + '/certs/ssl/certificate.crt', 'utf8') };
 
 http.createServer(app).listen(Config.web.port);  // $sudo PORT=8080 node app.js
-//https.createServer(https_op, app).listen(443);  // starts https server
+https.createServer(https_op, app).listen(443);   // starts https server
 
 
 // If the Node process ends, close the Mongoose connection
