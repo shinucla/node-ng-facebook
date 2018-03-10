@@ -54,6 +54,12 @@ app.use(function(req, res, next) {
 });
 
 
+
+/* Steps to get SSL (https):
+ * 1) Goto www.sslforfree.com follow the steps to download cert files
+ * 2) Save the files and create the option map:
+ * 3) https.createServer(https_op, app).listen(443);
+ */
 var https_op = { key: fs.readFileSync(Config.root + '/certs/ssl/private.key', 'utf8'),
 		 ca: fs.readFileSync(Config.root + '/certs/ssl/ca_bundle.crt', 'utf8'),
 		 cert: fs.readFileSync(Config.root + '/certs/ssl/certificate.crt', 'utf8') };
