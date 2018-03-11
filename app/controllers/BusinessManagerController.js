@@ -43,8 +43,13 @@ module.exports = function(app) {
 		return user.setAdminUserToken(null).save();
 	      })
 	      .then(function() {
+		//res.json({ status: 200, result: 0 });
+		return FB.withUser(req.user).clearToken();
+	      })
+	      .then(function() {
 		res.json({ status: 200, result: 0 });
-	      });
+	      })
+	    ;
 	  });
   
   app

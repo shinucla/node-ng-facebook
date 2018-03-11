@@ -43,7 +43,6 @@ function get_call(user, path, param) {
   try {
     return (getToken(user)
 	    .then(function(token) {
-	      console.log(token);
 	      return request({ method: 'get',
 			       json: true,
 			       uri: graph_api_url + path,
@@ -85,6 +84,14 @@ function getToken(user) {
   });
 }
 
+function clearToken(user) {
+  var id = user._id.toString();
+  if (TokenMap[id]) {
+    TokenMap[id] = null;
+  }
+  return new Promise(function(resolve, reject) { resolve(0); });
+}
+
 // ================================================================
 
 // define a function type class
@@ -113,6 +120,10 @@ FacebookServiceManager.prototype = {
 	      ? map.error
 	      : map);
     });
+  },
+
+  resetToken: function() {
+    
   },
   
 };
