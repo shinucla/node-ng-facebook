@@ -3,7 +3,7 @@
   <div class="header">
     <div ng-show="null !== hasAdminUserToken && hasAdminUserToken">
       <h1>{{me.name}}</h1>
-      ({{me.email}})
+      {{me.email}}
       <hr/>
       <br/>
       <a href="javascript:void(0)" class="btn btn-success" role="button" ng-click="resetFbAccess()">Reset Facebook Access</a>
