@@ -123,7 +123,7 @@ FacebookServiceManager.prototype = {
   },
 
   resetToken: function() {
-    
+    return clearToken(this.user);
   },
   
 };

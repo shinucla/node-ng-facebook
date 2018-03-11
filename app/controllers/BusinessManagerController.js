@@ -44,7 +44,7 @@ module.exports = function(app) {
 	      })
 	      .then(function() {
 		//res.json({ status: 200, result: 0 });
-		return FB.withUser(req.user).clearToken();
+		return FB.withUser(req.user).resetToken();
 	      })
 	      .then(function() {
 		res.json({ status: 200, result: 0 });
