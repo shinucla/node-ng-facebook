@@ -4,13 +4,14 @@ angular.module('fbn')
 
   .controller('fbnHomeController', function($scope,
 					    $route,
+					    $window,
                                             FbnContextService,
                                             FbnAuthService,
                                             FbnServerCallService) {
 
     $scope.logout = function() {
       FbnAuthService.logout();
-      $route.reload();
+      $window.location.reload();
     };
 
     // Test getting data using ServerService.get
