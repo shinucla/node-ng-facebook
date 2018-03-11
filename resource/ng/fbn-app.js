@@ -11,6 +11,7 @@ angular.module('fbn', ['ngCookies', 'ngRoute', 'ui.bootstrap'])
       .when('/login/login', { templateUrl: '/ng/views/fbn-login-login.html', controller: 'fbnAuthController' })
       .when('/login/signup', { templateUrl: '/ng/views/fbn-login-signup.html', controller: 'fbnAuthController' })
 
+      .when('/settings/oauth', { templateUrl: '/ng/views/fbn-settings-oauth.html', controller: 'fbnSettingsController' })
       .when('/businessManager', { templateUrl: '/ng/views/fbn-business-manager.html', controller: 'fbnBusinessManagerController' })
       .when('/page', { templateUrl: '/ng/views/fbn-page.html', controller: 'fbnPageController' })
       .when('/adAccount', { templateUrl: '/ng/views/fbn-ad-account.html', controller: 'fbnAdAccountController' })

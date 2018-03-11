@@ -12,6 +12,18 @@ module.exports = function(app) {
 	      });
 	  });
   
+  app
+    .route('/businessManager/api/me')
+    .post(app.apiRequiredLogin,
+	  function(req, res) {
+	    FB
+	      .withUser(req.user)
+	      .getMe()
+	      .then(function(me) {
+		res.json({ status: 200, result: me });
+	      });
+	  });
+
   app // testing only should be removed
     .route('/businessManager/api/getAdminUserToken')
     .post(app.apiRequiredLogin,

@@ -103,6 +103,14 @@ FacebookServiceManager.prototype = {
 	      []);
     });
   },
+
+  getMe: function() {
+    var param = new ApiParam().addParam('fields', 'id,name,email');
+    
+    return get_call(this.user, '/me', param).then(function(map) {
+      return map;
+    });
+  },
   
 };
   

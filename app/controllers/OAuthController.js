@@ -18,7 +18,7 @@ module.exports = function(app) {
         res.redirect('https://www.facebook.com/dialog/oauth'
                      + '?state=' + encryptedUserId
 		     + '&client_id=' + Config.facebook.appId
-                     + '&scope=ads_management,manage_pages,business_management'
+                     + '&scope=business_management,ads_management,manage_pages,email'
                      + '&redirect_uri=' + redirectUri);
 
       } else {

@@ -11,34 +11,20 @@ angular.module('fbn')
 						       $log,
 						       FbnContextService,
 						       FbnSessionService,
-						       FbnServerCallService) {
+						       FbnServerCallService,
+						       FbnFacebookService) {
 
     $scope.hasAdminUserToken = null;
     FbnServerCallService.exec('/businessManager/api/getHasAdminUserToken').then(function(b) { $scope.hasAdminUserToken = b; });
     FbnServerCallService.exec('/businessManager/api/getLinkedBusinessManagers').then(function(bms) { $scope.bms = bms; });
     
     $scope.authenticateFbAccess = function() {
-      FbnServerCallService
-	.exec('/oauth/api/getEncryptedUserId')
-	.then(function(uid) {
-	  return $window.open('/oauth/api/facebook?uid=' + uid,
-			      "_blank",
-			      "scrollbars=0,resizable=0,width=750,height=550,left=400,top=200");
-	})
-	.then(function() {
-	  $location.path('/');
-	});
+      return FbnFacebookService.authenticateFbAccess();
     };
 
     $scope.resetFbAccess = function() {
-      FbnServerCallService
-	.exec('/businessManager/api/revokeAdminUserToken')
-	.then(function() {
-	  $route.reload(); // reload current page route
-	});
+      return FbnFacebookService.resetFbAccess();
     };
-    
-
 
     /* The whole thing can be encapsulated into a service
      *
