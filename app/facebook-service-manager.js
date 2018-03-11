@@ -43,6 +43,7 @@ function get_call(user, path, param) {
   try {
     return (getToken(user)
 	    .then(function(token) {
+	      console.log(token);
 	      return request({ method: 'get',
 			       json: true,
 			       uri: graph_api_url + path,
@@ -108,7 +109,9 @@ FacebookServiceManager.prototype = {
     var param = new ApiParam().addParam('fields', 'id,name,email');
     
     return get_call(this.user, '/me', param).then(function(map) {
-      return map;
+      return (!map || map.error
+	      ? map.error
+	      : map);
     });
   },
   
