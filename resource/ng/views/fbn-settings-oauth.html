@@ -1,0 +1,21 @@
+
+<div class="container" style="width: 800px; margin: 10px auto;">
+  <div class="header">
+    <div ng-show="null !== hasAdminUserToken && hasAdminUserToken">
+      <h1>{{me.name}}</h1>
+      ({{me.email}})
+      <hr/>
+      <br/>
+      <a href="javascript:void(0)" class="btn btn-success" role="button" ng-click="resetFbAccess()">Reset Facebook Access</a>
+    </div>
+    <div ng-show="null !== hasAdminUserToken && !hasAdminUserToken">
+      <a href="javascript:void(0)" class="btn btn-success" role="button" ng-click="authenticateFbAccess()">Authenticate Facebook Access</a>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div>
+    <!-- asdfasdf -->
+  </div>
+</div>
