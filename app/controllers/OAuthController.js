@@ -18,7 +18,7 @@ module.exports = function(app) {
         res.redirect('https://www.facebook.com/dialog/oauth'
                      + '?state=' + encryptedUserId
 		     + '&client_id=' + Config.facebook.appId
-                     + '&scope=business_management,ads_management,manage_pages,email'
+                     + '&scope=business_management,ads_management,email'
                      + '&redirect_uri=' + redirectUri);
 
       } else {
@@ -63,3 +63,57 @@ module.exports = function(app) {
           });
 
 };
+
+
+/* generating token for admin system user and system user:
+
+
+    IRipContext context = RipContext.get();
+    String action = context.getString("state");
+    String redirectUri = "https://advantage.advertiserreports.com:443/rip/oauth/facebookSystemUserToken";
+    FacebookCredential credential = FacebookCredential.forAccessTokens("", "");
+
+    if ("getCode".equals(action)) {
+      context.setRedirectUrl(Url.absolute("https://www.facebook.com/dialog/oauth",
+                                          Bindings.make("state", "getToken",
+                                                        "client_id", credential.getAppId(),
+                                                        "scope", "ads_management,business_management,manage_pages",
+                                                        "redirect_uri", redirectUri)));
+      return null;
+
+    } else if ("getToken".equals(action)) {
+      String adminUserToken
+        = new BsdJson.Map(handlePost("https://graph.facebook.com/" + FacebookCommunicator.API_VERSION + "/oauth/access_token",
+                                     "client_id", credential.getAppId(),
+                                     "client_secret", credential.getAppSecret(),
+                                     "code", context.getString("code"),
+                                     "redirect_uri", redirectUri))
+        .getString("access_token")
+        ;
+
+      String adminSystemUserToken
+        = new BsdJson.Map(handlePost(String.format("https://graph.facebook.com/" + FacebookCommunicator.API_VERSION + "/%s/access_tokens",
+                                                   credential.getAdminSystemUserId()),
+                                     "business_app", credential.getAppId(),
+                                     "scope", "ads_management,business_management,manage_pages",
+                                     "appsecret_proof", StringX.hmacSha256(credential.getAppSecret(), adminUserToken).toLowerCase(),
+                                     "access_token", adminUserToken))
+        .getString("access_token");
+
+      String systemUserToken
+        = new BsdJson.Map(handlePost(String.format("https://graph.facebook.com/" + FacebookCommunicator.API_VERSION + "/%s/ads_access_token",
+                                                   credential.getSystemUserId()),
+                                     "business_app", credential.getAppId(),
+                                     "scope", "ads_management,business_management,manage_pages",
+                                     "appsecret_proof", StringX.hmacSha256(credential.getAppSecret(), adminSystemUserToken).toLowerCase(),
+                                     "access_token", adminSystemUserToken))
+        .getString("access_token");
+
+      Credentials.get()
+        .setFacebookSystemUserCredential(FacebookCredential
+                                         .forAccessTokens(adminSystemUserToken,
+                                                          systemUserToken))
+        .persist();
+
+   
+*/
