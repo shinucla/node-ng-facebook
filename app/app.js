@@ -61,8 +61,11 @@ app.use(function(req, res, next) {
  * 3) https.createServer(https_op, app).listen(443);
  */
 var https_op = { key: fs.readFileSync(Config.root + '/certs/ssl/private.key', 'utf8'),
-		 ca: fs.readFileSync(Config.root + '/certs/ssl/ca_bundle.crt', 'utf8'),
-		 cert: fs.readFileSync(Config.root + '/certs/ssl/certificate.crt', 'utf8') };
+		 cert: fs.readFileSync(Config.root + '/certs/ssl/certificate.crt', 'utf8'),
+		 ca: [fs.readFileSync(Config.root + '/certs/ssl/ca_1.crt', 'utf8'),
+		      fs.readFileSync(Config.root + '/certs/ssl/ca_2.crt', 'utf8'),
+		      fs.readFileSync(Config.root + '/certs/ssl/ca_n.crt', 'utf8')]
+	       };
 
 http.createServer(app).listen(Config.web.port);  // $sudo PORT=8080 node app.js
 https.createServer(https_op, app).listen(443);   // starts https server
